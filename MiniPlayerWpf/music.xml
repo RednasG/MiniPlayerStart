@@ -45,6 +45,15 @@
     <length>2:21</length>
     <genre>Pop</genre>
   </song>
+	<song>
+		<id>6</id>
+		<title>All Is Well Feat. Joy Williams</title>
+		<artist>Avi Kaplan</artist>
+		<album>Floating on a Dream</album>
+		<filename>D:\HardingUniversity\FALL 2022\GUI\MiniPlayerStart\MiniPlayerWpf\kaplan.mp3</filename>
+		<length>2:57</length>
+		<genre>Pop Folk</genre>
+	</song>
   <playlist>
     <name>Cool stuff</name>
   </playlist>

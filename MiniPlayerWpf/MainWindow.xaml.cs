@@ -72,5 +72,39 @@ namespace MiniPlayerWpf
         {
             mediaPlayer.Stop();
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "",
+                DefaultExt = "*.wma;*.wav;*mp3;*.m4a",
+                Filter = "Media files|*.mp3;*.m4a;*.wma;*.wav|MP3 (*.mp3)|*.mp3|M4A (*.m4a)|*.m4a|Windows Media Audio (*.wma)|*.wma|Wave files (*.wav)|*.wav|All files|*.*"
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                // Selected file is openFileDialog.FileName
+                Song song = musicRepo.GetSongDetails(openFileDialog.FileName);
+                musicRepo.AddSong(song);
+                musicRepo.Save();
+                songIds.Add(song.Id);
+                songIdComboBox.SelectedIndex = songIdComboBox.Items.Count - 1;
+            }
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (songIdComboBox.SelectedItem != null)
+            {
+                musicRepo.DeleteSong((int)songIdComboBox.SelectedItem);
+                musicRepo.Save();
+
+                songIds.RemoveAt((int)songIdComboBox.SelectedIndex);
+                songIdComboBox.SelectedItem = (int)songIdComboBox.Items[0];
+            }
+        }
     }
 }
